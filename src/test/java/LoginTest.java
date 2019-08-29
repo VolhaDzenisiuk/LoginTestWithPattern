@@ -1,17 +1,26 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 
 public class LoginTest {
 
 	private LoginPage loginPage;
+	private WebDriver driver;
 
-	@Before
+	@BeforeEach
 	public void openBrowser() {
-		loginPage = new LoginPage();
+		driver = new ChromeDriver();
+		loginPage = new LoginPage(driver);
 		loginPage.load();
+	}
+
+	@AfterEach
+	public void closeBrowser() {
+		loginPage.close();
 	}
 
 	@Test
@@ -25,10 +34,5 @@ public class LoginTest {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
 		loginPage.logout();
 		assertEquals("Can't logout", "Войти", loginPage.getLoginLink().getText());
-	}
-
-	@After
-	public void closeBrowser() {
-		loginPage.close();
 	}
 }

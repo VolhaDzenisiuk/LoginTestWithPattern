@@ -1,6 +1,5 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -9,56 +8,55 @@ public class LoginPage {
 	private WebDriver driver;
 	private String URL = "https://www.tut.by";
 
-	@FindBy(className = "enter")
-	private WebElement LOGIN_LINK;
+	@FindBy(css = ".enter")
+	private WebElement loginLink;
 
-	@FindBy(name = "login")
-	private WebElement USERNAME;
+	@FindBy(css = "input[name='login']")
+	private WebElement usernameField;
 
-	@FindBy(name = "password")
-	private WebElement PASSWORD;
+	@FindBy(css = "input[name='password']")
+	private WebElement passwordField;
 
-	@FindBy(xpath = "//input[@tabindex='4']")
-	private WebElement LOGIN_BUTTON;
+	@FindBy(css = "input[tabindex='4']")
+	private WebElement loginButton;
+
+	@FindBy(css = "a[href*='profile.tut.by/logout']")
+	private WebElement logoutButton;
 
 	@FindBy(css = "span[class='uname']")
-	private WebElement LOGGED_IN_USERNAME;
+	private WebElement loggedInUsername;
 
-	@FindBy(xpath = "//a[contains(@href, 'profile.tut.by/logout')]")
-	private WebElement LOGOUT_BUTTON;
-
-	public LoginPage() {
-		driver = new ChromeDriver();
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
 	public void load() {
-		this.driver.get(URL);
-		this.driver.manage().window().maximize();
+		driver.get(URL);
+		driver.manage().window().maximize();
 	}
 
 	public void close() {
-		this.driver.close();
+		driver.close();
 	}
 
 	public void login(String username, String password) {
-		LOGIN_LINK.click();
-		USERNAME.sendKeys(username);
-		PASSWORD.sendKeys(password);
-		LOGIN_BUTTON.click();
+		loginLink.click();
+		usernameField.sendKeys(username);
+		passwordField.sendKeys(password);
+		loginButton.click();
 	}
 
-	public String logout() {
-		LOGGED_IN_USERNAME.click();
-		LOGOUT_BUTTON.click();
-		return LOGIN_LINK.getText();
+	public void logout() {
+		loggedInUsername.click();
+		logoutButton.click();
 	}
 
 	public WebElement getLoggedInUsername() {
-		return LOGGED_IN_USERNAME;
+		return loggedInUsername;
 	}
 
 	public WebElement getLoginLink() {
-		return LOGIN_LINK;
+		return loginLink;
 	}
 }
