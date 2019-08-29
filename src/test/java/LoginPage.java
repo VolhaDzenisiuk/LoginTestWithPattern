@@ -6,11 +6,11 @@ public class LoginPage {
 
 	private WebDriver driver;
 	private String URL = "https://www.tut.by";
-	private By loginLink = By.className("enter");
-	private By usernameField = By.name("login");
-	private By passwordField = By.name("password");
-	private By loginButton = By.xpath("//input[@tabindex='4']");
-	private By logoutButton = By.xpath("//a[contains(@href, 'profile.tut.by/logout')]");
+	private By loginLink = By.cssSelector(".enter");
+	private By usernameField = By.cssSelector("input[name='login']");
+	private By passwordField = By.cssSelector("input[name='password']");
+	private By loginButton = By.cssSelector("input[tabindex='4']");
+	private By logoutButton = By.cssSelector("a[href*='profile.tut.by/logout']");
 	private By loggedInUsername = By.cssSelector("span[class='uname']");
 
 	public LoginPage(WebDriver driver) {
