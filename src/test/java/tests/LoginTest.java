@@ -29,14 +29,13 @@ public class LoginTest extends BaseTest {
 
 	@Test
 	public void testLogin() {
-		driver.get(URL);
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
 		assertEquals("Selenium Test", loggedInPage.getLoggedInUsername().getText(), "Can't login");
 	}
 
 	@Test
 	public void testLogout() {
-		LoggedInPage loggedInPage = loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
+		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
 		loggedInPage.logout();
 		assertEquals("Войти", loginPage.getLoginLink().getText(), "Can't logout");
 	}
