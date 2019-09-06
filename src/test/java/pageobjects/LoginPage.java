@@ -1,3 +1,5 @@
+package pageobjects;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -5,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-	private WebDriver driver;
+	protected WebDriver driver;
 	private String URL = "https://www.tut.by";
 
 	@FindBy(css = ".enter")
@@ -19,12 +21,6 @@ public class LoginPage {
 
 	@FindBy(css = "input[tabindex='4']")
 	private WebElement loginButton;
-
-	@FindBy(css = "a[href*='profile.tut.by/logout']")
-	private WebElement logoutButton;
-
-	@FindBy(css = "span[class='uname']")
-	private WebElement loggedInUsername;
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -40,20 +36,12 @@ public class LoginPage {
 		driver.close();
 	}
 
-	public void login(String username, String password) {
+	public LoggenInPage login(String username, String password) {
 		loginLink.click();
 		usernameField.sendKeys(username);
 		passwordField.sendKeys(password);
 		loginButton.click();
-	}
-
-	public void logout() {
-		loggedInUsername.click();
-		logoutButton.click();
-	}
-
-	public WebElement getLoggedInUsername() {
-		return loggedInUsername;
+		return new LoggenInPage(driver);
 	}
 
 	public WebElement getLoginLink() {

@@ -1,38 +1,42 @@
+package tests;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import pageobjects.LoggenInPage;
+import pageobjects.LoginPage;
 
 import static org.junit.Assert.assertEquals;
 
-public class LoginTest {
+public class LoginTest extends BasePage {
 
 	private LoginPage loginPage;
-	private WebDriver driver;
+	private LoggenInPage loggenInPage;
+	private final String URL = "https://www.tut.by";
 
 	@BeforeEach
-	public void openBrowser() {
-		driver = new ChromeDriver();
+	public void before() {
+		openBrowser();
+		goToPage(URL);
 		loginPage = new LoginPage(driver);
-		loginPage.load();
+		loggenInPage = new LoggenInPage(driver);
 	}
 
 	@AfterEach
-	public void closeBrowser() {
-		loginPage.close();
+	public void after() {
+		closeBrowser();
 	}
 
 	@Test
 	public void testLogin() {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
-		assertEquals("Can't login", "Selenium Test", loginPage.getLoggedInUsername().getText());
+		assertEquals("Can't login", "Selenium Test", loggenInPage.getLoggedInUsername().getText());
 	}
 
 	@Test
 	public void testLogout() {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
-		loginPage.logout();
+		loggenInPage.logout();
 		assertEquals("Can't logout", "Войти", loginPage.getLoginLink().getText());
 	}
 }
