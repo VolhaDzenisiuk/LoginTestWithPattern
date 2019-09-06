@@ -3,7 +3,7 @@ package tests;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import pageobjects.LoggenInPage;
+import pageobjects.LoggedInPage;
 import pageobjects.LoginPage;
 
 import static org.junit.Assert.assertEquals;
@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class LoginTest extends BasePage {
 
 	private LoginPage loginPage;
-	private LoggenInPage loggenInPage;
+	private LoggedInPage loggenInPage;
 	private final String URL = "https://www.tut.by";
 
 	@BeforeEach
@@ -19,7 +19,7 @@ public class LoginTest extends BasePage {
 		openBrowser();
 		goToPage(URL);
 		loginPage = new LoginPage(driver);
-		loggenInPage = new LoggenInPage(driver);
+		loggenInPage = new LoggedInPage(driver);
 	}
 
 	@AfterEach

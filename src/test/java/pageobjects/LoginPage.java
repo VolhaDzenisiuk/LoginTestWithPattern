@@ -27,21 +27,12 @@ public class LoginPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void load() {
-		driver.get(URL);
-		driver.manage().window().maximize();
-	}
-
-	public void close() {
-		driver.close();
-	}
-
-	public LoggenInPage login(String username, String password) {
+	public LoggedInPage login(String username, String password) {
 		loginLink.click();
 		usernameField.sendKeys(username);
 		passwordField.sendKeys(password);
 		loginButton.click();
-		return new LoggenInPage(driver);
+		return new LoggedInPage(driver);
 	}
 
 	public WebElement getLoginLink() {
