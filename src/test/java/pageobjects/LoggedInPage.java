@@ -21,7 +21,7 @@ public class LoggedInPage {
 		return new LoginPage(driver);
 	}
 
-	public WebElement getLoggedInUsername() {
-		return driver.findElement(loggedInUsername);
+	public String getLoggedInUsername() {
+		return driver.findElement(loggedInUsername).getText();
 	}
 }
