@@ -30,13 +30,13 @@ public class LoginTest extends BasePage {
 	@Test
 	public void testLogin() {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
-		assertEquals("Can't login", "Selenium Test", loggenInPage.getLoggedInUsername().getText());
+		assertEquals("Can't login", "Selenium Test", loggenInPage.getLoggedInUsername());
 	}
 
 	@Test
 	public void testLogout() {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
 		loggenInPage.logout();
-		assertEquals("Can't logout", "Войти", loginPage.getLoginLink().getText());
+		assertEquals("Can't logout", "Войти", loginPage.getLoginLink());
 	}
 }

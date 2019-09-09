@@ -35,7 +35,7 @@ public class LoginPage {
 		return new LoggedInPage(driver);
 	}
 
-	public WebElement getLoginLink() {
-		return loginLink;
+	public String getLoginLink() {
+		return loginLink.getText();
 	}
 }
