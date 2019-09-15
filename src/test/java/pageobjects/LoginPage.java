@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
 
 	protected WebDriver driver;
-	private String URL = "https://www.tut.by";
 
 	@FindBy(css = ".enter")
 	private WebElement loginLink;
