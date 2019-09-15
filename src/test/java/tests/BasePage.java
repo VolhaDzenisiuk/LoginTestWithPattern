@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BasePage {
 
-	protected WebDriver driver;
+	protected static WebDriver driver;
 
 	public void openBrowser() {
 		driver = new ChromeDriver();

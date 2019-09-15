@@ -1,12 +1,12 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import pageobjects.LoggedInPage;
 import pageobjects.LoginPage;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BasePage {
 
@@ -14,7 +14,7 @@ public class LoginTest extends BasePage {
 	private LoggedInPage loggenInPage;
 	private final String URL = "https://www.tut.by";
 
-	@BeforeEach
+	@BeforeMethod
 	public void before() {
 		openBrowser();
 		goToPage(URL);
@@ -22,7 +22,7 @@ public class LoginTest extends BasePage {
 		loggenInPage = new LoggedInPage(driver);
 	}
 
-	@AfterEach
+	@AfterMethod
 	public void after() {
 		closeBrowser();
 	}
@@ -30,13 +30,13 @@ public class LoginTest extends BasePage {
 	@Test
 	public void testLogin() {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
-		assertEquals("Can't login", "Selenium Test", loggenInPage.getLoggedInUsername());
+		assertEquals("Selenium Test", loggenInPage.getLoggedInUsername(), "Can't login");
 	}
 
 	@Test
 	public void testLogout() {
 		loginPage.login("seleniumtests@tut.by", "123456789zxcvbn");
 		loggenInPage.logout();
-		assertEquals("Can't logout", "Войти", loginPage.getLoginLink());
+		assertEquals("Войти", loginPage.getLoginLink(), "Can't logout");
 	}
 }
