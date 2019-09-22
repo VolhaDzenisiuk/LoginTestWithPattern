@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import pageobjects.LoggedInPage;
 import pageobjects.LoginPage;
 
+import java.net.MalformedURLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest extends BaseTest {
@@ -15,7 +17,7 @@ public class LoginTest extends BaseTest {
 	private final String URL = "https://www.tut.by";
 
 	@BeforeEach
-	public void before() {
+	public void before() throws MalformedURLException {
 		openBrowser();
 		goToPage(URL);
 		loginPage = new LoginPage(driver);
